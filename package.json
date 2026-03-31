@@ -1,0 +1,64 @@
+{
+  "name": "lolzteam",
+  "version": "0.0.0",
+  "description": "TypeScript API wrapper for Lolzteam Forum and Market",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build": "npm run build:esm && npm run build:cjs && node scripts/fix-cjs.js",
+    "generate": "npx tsx codegen/generate.ts --schema schemas/forum.json --output-dir src/generated/forum --api-name Forum && npx tsx codegen/generate.ts --schema schemas/market.json --output-dir src/generated/market --api-name Market",
+    "lint": "tsc --noEmit",
+    "test": "node --test --import tsx tests/*.test.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "lolzteam",
+    "lolz",
+    "api",
+    "forum",
+    "market",
+    "zelenka"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "peerDependencies": {
+    "undici": ">=6.0.0"
+  },
+  "peerDependenciesMeta": {
+    "undici": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "author": ""
+}

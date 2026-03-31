@@ -1,0 +1,21 @@
+# Source & development files (not needed in the published package)
+src/
+tests/
+codegen/
+schemas/
+scripts/
+.github/
+
+# Config
+tsconfig*.json
+.gitignore
+.npmignore
+.env*
+
+# IDE
+.vscode/
+.idea/
+
+# Misc
+coverage/
+*.tsbuildinfo
